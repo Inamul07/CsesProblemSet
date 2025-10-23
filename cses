@@ -1,0 +1,109 @@
+#!/bin/bash
+
+# CSES Problem Solver - Main Runner Script
+# Provides convenient access to all CSES problem management commands
+
+SCRIPT_DIR="$(dirname "$0")"
+SCRIPTS_PATH="$SCRIPT_DIR/scripts"
+
+show_help() {
+    echo "CSES Problem Solver"
+    echo "=================="
+    echo ""
+    echo "Usage: ./cses <command> [arguments]"
+    echo ""
+    echo "Commands:"
+    echo "  test <ProblemName>     - Run all test cases for a problem"
+    echo "  run <ProblemName>      - Run a problem interactively"
+    echo "  new <ProblemName>      - Create a new problem with template"
+    echo "  submit <ProblemName>   - Generate submission-ready code (no package)"
+    echo "  test-submit <ProblemName> - Test submission-ready code (auto-generates if needed)"
+    echo "  status                 - Show overview of all problems"
+    echo "  help                   - Show this help message"
+    echo ""
+    echo "Examples:"
+    echo "  ./cses test WeirdAlgorithm"
+    echo "  ./cses run WeirdAlgorithm"
+    echo "  ./cses new TwoSum"
+    echo "  ./cses submit WeirdAlgorithm"
+    echo "  ./cses test-submit WeirdAlgorithm"
+    echo "  ./cses status"
+    echo ""
+    echo "Note: You can also run scripts directly from the scripts/ directory:"
+    echo "  ./scripts/test.sh WeirdAlgorithm"
+    echo "  ./scripts/run.sh WeirdAlgorithm"
+    echo "  ./scripts/new_problem.sh TwoSum"
+    echo "  ./scripts/submit.sh WeirdAlgorithm"
+    echo "  ./scripts/test_submit.sh WeirdAlgorithm"
+    echo "  ./scripts/status.sh"
+}
+
+if [ $# -eq 0 ]; then
+    show_help
+    exit 0
+fi
+
+COMMAND=$1
+shift
+
+case $COMMAND in
+    "test")
+        if [ $# -eq 0 ]; then
+            echo "Error: Missing problem name"
+            echo "Usage: ./cses test <ProblemName>"
+            exit 1
+        fi
+        exec "$SCRIPTS_PATH/test.sh" "$@"
+        ;;
+
+    "run")
+        if [ $# -eq 0 ]; then
+            echo "Error: Missing problem name"
+            echo "Usage: ./cses run <ProblemName>"
+            exit 1
+        fi
+        exec "$SCRIPTS_PATH/run.sh" "$@"
+        ;;
+
+    "new")
+        if [ $# -eq 0 ]; then
+            echo "Error: Missing problem name"
+            echo "Usage: ./cses new <ProblemName>"
+            exit 1
+        fi
+        exec "$SCRIPTS_PATH/new_problem.sh" "$@"
+        ;;
+
+    "submit")
+        if [ $# -eq 0 ]; then
+            echo "Error: Missing problem name"
+            echo "Usage: ./cses submit <ProblemName>"
+            exit 1
+        fi
+        exec "$SCRIPTS_PATH/submit.sh" "$@"
+        ;;
+
+    "test-submit")
+        if [ $# -eq 0 ]; then
+            echo "Error: Missing problem name"
+            echo "Usage: ./cses test-submit <ProblemName>"
+            exit 1
+        fi
+        exec "$SCRIPTS_PATH/test_submit.sh" "$@"
+        ;;
+
+    "status")
+        exec "$SCRIPTS_PATH/status.sh"
+        ;;
+
+    "help"|"-h"|"--help")
+        show_help
+        ;;
+
+    *)
+        echo "Error: Unknown command '$COMMAND'"
+        echo ""
+        show_help
+        exit 1
+        ;;
+esac
