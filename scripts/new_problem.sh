@@ -45,17 +45,9 @@ public class $PROBLEM_NAME {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
+        sc.close();
     }
 }
-EOF
-
-# Create sample test case
-cat > "$PROBLEM_PATH/tests/1.in" << EOF
-5
-EOF
-
-cat > "$PROBLEM_PATH/tests/1.out" << EOF
-5
 EOF
 
 echo "✅ Problem '$PROBLEM_NAME' created successfully!"
