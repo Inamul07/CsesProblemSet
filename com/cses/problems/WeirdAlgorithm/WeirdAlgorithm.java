@@ -1,4 +1,4 @@
-package com.cses.problems.WeirdAlgorithm;
+package com.cses.problems.weirdalgorithm;
 
 import java.util.Scanner;
 

@@ -14,7 +14,7 @@ if [ $# -eq 0 ]; then
 fi
 
 PROBLEM_NAME=$1
-PROBLEM_PATH="com/cses/problems/$PROBLEM_NAME"
+PROBLEM_PATH="com/cses/problems/$(echo $PROBLEM_NAME | tr '[:upper:]' '[:lower:]')"
 
 # Check if problem already exists
 if [ -d "$PROBLEM_PATH" ]; then
@@ -36,7 +36,7 @@ mkdir -p "$PROBLEM_PATH/tests"
 
 # Create Java template file
 cat > "$PROBLEM_PATH/$PROBLEM_NAME.java" << EOF
-package com.cses.problems.$PROBLEM_NAME;
+package com.cses.problems.$(echo $PROBLEM_NAME | tr '[:upper:]' '[:lower:]');
 
 import java.util.Scanner;
 

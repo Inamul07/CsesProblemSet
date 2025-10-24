@@ -17,7 +17,8 @@ if [ $# -eq 0 ]; then
 fi
 
 PROBLEM_NAME=$1
-PROBLEM_PATH="com/cses/problems/$PROBLEM_NAME"
+PROBLEM_DIR=$(echo $PROBLEM_NAME | tr '[:upper:]' '[:lower:]')
+PROBLEM_PATH="com/cses/problems/$PROBLEM_DIR"
 JAVA_FILE="$PROBLEM_PATH/$PROBLEM_NAME.java"
 
 # Check if problem exists
@@ -41,4 +42,4 @@ fi
 echo "Running $PROBLEM_NAME (enter your input, press Ctrl+D when done):"
 echo "----------------------------------------"
 
-java -cp . "com.cses.problems.$PROBLEM_NAME.$PROBLEM_NAME"
+java -cp . "com.cses.problems.$PROBLEM_DIR.$PROBLEM_NAME"

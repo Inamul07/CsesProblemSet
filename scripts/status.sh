@@ -18,8 +18,8 @@ if [ ! -d "$PROBLEMS_DIR" ]; then
     exit 1
 fi
 
-# Get list of all problems
-PROBLEMS=$(find "$PROBLEMS_DIR" -name "*.java" -type f | sed 's|com/cses/problems/||g' | sed 's|/.*||g' | sort | uniq)
+# Get list of all problems (extract class names from Java files)
+PROBLEMS=$(find "$PROBLEMS_DIR" -name "*.java" -type f | sed 's|.*/||g' | sed 's|\.java$||g' | sort | uniq)
 
 if [ -z "$PROBLEMS" ]; then
     echo "No problems found!"
@@ -44,7 +44,8 @@ fi
 
 # Check each problem
 for PROBLEM in $PROBLEMS; do
-    PROBLEM_PATH="$PROBLEMS_DIR/$PROBLEM"
+    PROBLEM_DIR=$(echo $PROBLEM | tr '[:upper:]' '[:lower:]')
+    PROBLEM_PATH="$PROBLEMS_DIR/$PROBLEM_DIR"
     TESTS_PATH="$PROBLEM_PATH/tests"
 
     printf "%-20s" "$PROBLEM:"

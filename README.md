@@ -8,8 +8,8 @@ This project provides an automated testing system for CSES (Competitive Programm
 CSES/
 ├── com/cses/
 │   ├── problems/
-│   │   └── [ProblemName]/
-│   │       ├── [ProblemName].java    # Solution file
+│   │   └── [problemname]/            # lowercase directory
+│   │       ├── [ProblemName].java    # CamelCase class name
 │   │       └── tests/
 │   │           ├── 1.in              # Test input files
 │   │           ├── 1.out             # Expected output files
@@ -180,19 +180,22 @@ Results: 3/4 tests passed (75.0%)
 
 ## Adding New Problems
 
-1. Create a new directory under `com/cses/problems/` with your problem name
-2. Create your Java solution file with the same name as the directory
-3. Create a `tests/` subdirectory
-4. Add test cases as numbered pairs: `1.in`, `1.out`, `2.in`, `2.out`, etc.
+1. Use `./cses new ProblemName` to create the proper structure automatically
+2. The system will create:
+   - Directory: `com/cses/problems/problemname/` (lowercase)
+   - Java file: `ProblemName.java` (CamelCase class name)
+   - Package: `package com.cses.problems.problemname;` (lowercase)
+   - Tests directory: `tests/`
+3. Add test cases as numbered pairs: `1.in`, `1.out`, `2.in`, `2.out`, etc.
 
 ### Java Solution Template
 
 ```java
-package com.cses.problems.ProblemName;
+package com.cses.problems.problemname;  // lowercase package name
 
 import java.util.Scanner;
 
-public class ProblemName {
+public class ProblemName {  // CamelCase class name
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
@@ -217,6 +220,7 @@ public class ProblemName {
 - **Detailed reporting**: Shows execution time and detailed failure information
 - **Error handling**: Captures compilation errors and runtime exceptions
 - **Submission generation**: Creates package-free versions ready for competitive programming
+- **Lowercase packages**: Uses lowercase package names following Java conventions
 - **Flexible**: Works with any number of test cases
 - **Cross-platform**: Works on macOS, Linux, and WSL
 

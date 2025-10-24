@@ -17,9 +17,10 @@ if [ $# -eq 0 ]; then
 fi
 
 PROBLEM_NAME=$1
+PROBLEM_DIR=$(echo $PROBLEM_NAME | tr '[:upper:]' '[:lower:]')
 
 # Check if problem exists
-if [ ! -d "com/cses/problems/$PROBLEM_NAME" ]; then
+if [ ! -d "com/cses/problems/$PROBLEM_DIR" ]; then
     echo "Error: Problem '$PROBLEM_NAME' not found!"
     echo ""
     echo "Available problems:"
@@ -28,7 +29,7 @@ if [ ! -d "com/cses/problems/$PROBLEM_NAME" ]; then
 fi
 
 # Check if tests directory exists
-if [ ! -d "com/cses/problems/$PROBLEM_NAME/tests" ]; then
+if [ ! -d "com/cses/problems/$PROBLEM_DIR/tests" ]; then
     echo "Error: Tests directory not found for problem '$PROBLEM_NAME'"
     exit 1
 fi

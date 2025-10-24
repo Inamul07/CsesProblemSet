@@ -17,7 +17,8 @@ if [ $# -eq 0 ]; then
 fi
 
 PROBLEM_NAME=$1
-PROBLEM_PATH="com/cses/problems/$PROBLEM_NAME"
+PROBLEM_DIR=$(echo $PROBLEM_NAME | tr '[:upper:]' '[:lower:]')
+PROBLEM_PATH="com/cses/problems/$PROBLEM_DIR"
 JAVA_FILE="$PROBLEM_PATH/$PROBLEM_NAME.java"
 SUBMIT_DIR="submit"
 SUBMIT_FILE="$SUBMIT_DIR/$PROBLEM_NAME.java"
